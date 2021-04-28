@@ -134,12 +134,17 @@ For example, getStatName(snorlaxData.stats, 50) will return ['special-defense', 
 
 const getStatName = (arr, minBaseStat) => {
   // Solution code here...
-  let newArr = arr.filter(value => (value.baseStat > minBaseStat));
 
-  let arrNames = newArr.array.forEach(element => {
+  let newArr = arr.filter(value => value.baseStat > minBaseStat).map(value => value.stat.name);
 
-  });
-  return newArr[name];
+  // let newArr = [];
+  // let old = arr.filter(value => value.baseStat > minBaseStat);
+  // for (let i = 0; i < old.length; i++) {
+  //   newArr.push(old[i].name);
+  // }
+
+  // });
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -193,6 +198,8 @@ const characters = [
 
 const getCharactersWithoutChildren = (arr) => {
   // Solution code here...
+  let newArr = arr.filter(value => !value.children);
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -205,6 +212,10 @@ For example: evenOddNumericValues(['Gregor', 2, 4, 1]) returns ['even', 'even', 
 
 const evenOddNumericValues = (arr) => {
   // Solution code here...
+
+  let newArr = arr.filter(value => typeof value === 'number').map(value => value % 2 === 0 ? 'even' : 'odd');
+  // let newArr = arr.filter(value => Number.isInteger(value)).map(value => value % 2 === 0 ? 'even' : 'odd');
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -307,14 +318,14 @@ describe('Testing challenge 7', () => {
   });
 });
 
-xdescribe('Testing challenge 8', () => {
+describe('Testing challenge 8', () => {
   test('It should return an array containing characters who do not have children', () => {
     expect(getCharactersWithoutChildren(characters)).toStrictEqual([{ name: 'Sansa', spouse: 'Tyrion', house: 'Stark' }, { name: 'Jon', spouse: null, house: 'Snow' }]);
     expect(getCharactersWithoutChildren(characters).length).toStrictEqual(2);
   });
 });
 
-xdescribe('Testing challenge 9', () => {
+describe('Testing challenge 9', () => {
   test('It should remove non-integers and return "even" or "odd', () => {
     expect(evenOddNumericValues(['Gregor', 2, 4, 1])).toStrictEqual(['even', 'even', 'odd']);
     expect(evenOddNumericValues(['Gregor', 2, 4, 1]).length).toStrictEqual(3);
