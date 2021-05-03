@@ -141,7 +141,7 @@ Note: You must use reduce for this challenge. You may not use the built-in .reve
 
 const reversedString = (str) => {
   // Solution code here...
-  return str.split('').reduce((acc, value, indes) => value + acc, '');
+  return str.split('').reduce((acc, value, index) => value + acc, '');
 };
 
 /* ------------------------------------------------------------------------------------------------
